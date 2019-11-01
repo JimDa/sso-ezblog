@@ -1,0 +1,24 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /auth-service
+
+spring:
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+  datasource:
+    auth-service:
+      jdbc-url: jdbc:mysql://localhost:3306/auth?useUnicode=true&characterEncoding=UTF-8&useSSL=FALSE&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+      username: dpc
+      password: dpc123
+#      driver-class-name: com.mysql.jdbc.Driver
+  session:
+    store-type: redis
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
