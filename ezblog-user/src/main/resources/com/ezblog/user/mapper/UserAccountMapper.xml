@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezblog.user.mapper.UserAccountMapper">
+    <resultMap id="userResultMap" type="domain.User">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <!--<result column="password" property="password" jdbcType="VARCHAR"/>-->
+        <result column="gender" property="gender" jdbcType="VARCHAR"/>
+        <result column="birth_date" property="birthDate" jdbcType="TIMESTAMP"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="creator" property="creator" jdbcType="VARCHAR"/>
+        <result column="editor" property="editor" jdbcType="VARCHAR"/>
+        <result column="edit_date" property="editDate" jdbcType="TIMESTAMP"/>
+        <collection property="roles" ofType="string" column="role_item">
+            <result column="role_name" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+    <select id="selectByUsername" parameterType="string" resultMap="userResultMap">
+        select temp.*,our.name role_name from
+        (select oua.*,ourr.role_id from oauth_user_account oua
+        left join oauth_user_role_rels ourr on oua.id = ourr.user_id) temp
+        left join oauth_user_role our on temp.role_id = our.id
+         where temp.username = #{username,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByPhoneNum" parameterType="string" resultMap="userResultMap">
+        select temp.*,our.name role_name from
+        (select oua.*,ourr.role_id from oauth_user_account oua
+        left join oauth_user_role_rels ourr on oua.id = ourr.user_id) temp
+        left join oauth_user_role our on temp.role_id = our.id
+         where temp.phone_num = #{phoneNum,jdbcType=VARCHAR}
+    </select>
+    <insert id="insert" parameterType="domain.User" useGeneratedKeys="true" keyProperty="id">
+        insert into oauth_user_account (username,email,password,gender,birth_date,create_date,creator,editor,edit_date)
+        values (
+        #{username,jdbcType=VARCHAR},
+        #{email,jdbcType=VARCHAR},
+        #{password,jdbcType=VARCHAR},
+        #{gender,jdbcType=VARCHAR},
+        #{birthDate,jdbcType=TIMESTAMP},
+        #{createDate,jdbcType=TIMESTAMP},
+        #{creator,jdbcType=VARCHAR},
+        #{editor,jdbcType=VARCHAR},
+        #{editDate,jdbcType=TIMESTAMP})
+    </insert>
+
+    <select id="selectAllUsers" resultType="list" resultMap="userResultMap">
+                select temp.*,our.name role_name from
+        (select oua.*,ourr.role_id from oauth_user_account oua
+        left join oauth_user_role_rels ourr on oua.id = ourr.user_id) temp
+        left join oauth_user_role our on temp.role_id = our.id
+    </select>
+
+    <insert id="relateRole">
+        insert into oauth_user_role_rels (user_id,role_id)
+        values (#{userId,jdbcType=INTEGER},#{roleId,jdbcType=INTEGER})
+    </insert>
+
+</mapper>

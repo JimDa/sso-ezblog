@@ -23,6 +23,7 @@
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Greenwich.SR3</spring-cloud.version>
+        <aliyun.version>4.1.1</aliyun.version>
     </properties>
 
     <dependencies>
@@ -82,6 +83,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <!--阿里云发短信-->
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-core</artifactId>
+            <version>${aliyun.version}</version>
         </dependency>
 
     </dependencies>

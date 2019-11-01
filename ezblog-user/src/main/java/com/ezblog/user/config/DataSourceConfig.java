@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 @Configuration
 //@ConditionalOnProperty(name = "spring.datasource.service-auth", matchIfMissing = false)
 @MapperScan(
-        value = {"com.example.auth.mapper"},
+        value = {"com.ezblog.user.mapper"},
         sqlSessionFactoryRef = "sqlSessionFactory",
         sqlSessionTemplateRef = "sqlSessionTemplate"
 )
@@ -45,7 +45,7 @@ public class DataSourceConfig {
     ) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);
-        Resource[] resources = new PathMatchingResourcePatternResolver().getResources("classpath*:com/example/auth/mapper/*.xml");
+        Resource[] resources = new PathMatchingResourcePatternResolver().getResources("classpath*:com/ezblog/user/mapper/*.xml");
         sqlSessionFactoryBean.setMapperLocations(resources);
         return sqlSessionFactoryBean.getObject();
     }
