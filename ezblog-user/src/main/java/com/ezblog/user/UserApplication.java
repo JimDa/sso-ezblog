@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -18,6 +19,7 @@ import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResour
 @SpringBootApplication
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @MapperScan("com.ezblog.user.mapper")
+@EnableFeignClients
 public class UserApplication {
 
     public static void main(String[] args) {

@@ -17,8 +17,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.logout()
-                .logoutSuccessUrl("http://localhost:8080/logout")
+        httpSecurity
+                .logout()
+                .logoutSuccessUrl("http://localhost:8081/auth-service/login")
                 .and()
                 .authorizeRequests()
                 .anyRequest().authenticated()
