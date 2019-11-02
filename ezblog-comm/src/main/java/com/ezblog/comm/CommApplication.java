@@ -1,4 +1,4 @@
-package com.ezblog.user;
+package com.ezblog.comm;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -9,19 +9,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
 
 @SpringBootApplication
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableFeignClients
-public class UserApplication {
+public class CommApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(UserApplication.class, args);
+        SpringApplication.run(CommApplication.class, args);
     }
 
     @Bean
@@ -30,7 +28,9 @@ public class UserApplication {
     }
 
     @Bean
-    public Gson gson() {return new Gson();}
+    public Gson gson() {
+        return new Gson();
+    }
 
     @Bean("jacksonSerializer")
     public Jackson2JsonRedisSerializer defaultSerializer() {
@@ -49,5 +49,4 @@ public class UserApplication {
                                                  OAuth2ProtectedResourceDetails details) {
         return new OAuth2RestTemplate(details, oauth2ClientContext);
     }
-
 }

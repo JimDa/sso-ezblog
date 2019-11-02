@@ -1,7 +1,7 @@
 security:
   oauth2:
     client:
-      clientId: user-service
+      clientId: comm-service
       clientSecret: secret
       accessTokenUri: http://localhost:8081/auth-service/oauth/token
       user-authorization-uri: http://localhost:8081/auth-service/oauth/authorize
@@ -16,14 +16,14 @@ spring:
     database: 0
   datasource:
     user-service:
-      jdbc-url: jdbc:mysql://localhost:3306/auth?useUnicode=true&characterEncoding=UTF-8&useSSL=FALSE&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+      jdbc-url: jdbc:mysql://localhost:3306/comm?useUnicode=true&characterEncoding=UTF-8&useSSL=FALSE&serverTimezone=Asia/Shanghai&allowMultiQueries=true
       username: dpc
       password: dpc123
 
 server:
-  port: 8082
+  port: 8083
   servlet:
-    context-path: /user-service
+    context-path: /comm-service
 
 ribbon:
   connect-timeout: 1

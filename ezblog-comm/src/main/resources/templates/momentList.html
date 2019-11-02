@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>灌水列表</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<h3>当前登录用户：<span th:text="${#authentication.name}"></span> | <a th:href="@{/custom/logout}">退出</a></h3>
+<h3>这是灌水列表页面</h3>
+<table class="table">
+    <tr>
+        <th>内容</th>
+    </tr>
+    <tr th:each="item : ${moments}">
+        <td th:text="${item}"></td>
+</table>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
 
 <head>
     <!-- Required meta tags -->
@@ -20,7 +20,7 @@
               <span class="page-title-icon bg-gradient-primary text-white mr-2">
                 <i class="mdi mdi-home"></i>                 
               </span>
-                        欢迎来到王者荣耀
+                        欢迎用户<span th:text="${#authentication.name}"></span>来到王者荣耀
                     </h3>
                 </div>
                 <div class="row">
@@ -37,7 +37,7 @@
                         <div class="card bg-gradient-info card-img-holder text-white">
                             <div class="card-body">
                                 <img src="images/circle.svg" class="card-img-absolute" alt="circle-image"/>
-                                <h2 class="mb-5"><a href="http://localhost:8083/community-service/list"
+                                <h2 class="mb-5"><a href="http://localhost:8083/comm-service/moments/list"
                                                     style="color: white">社区中心</a></h2>
                             </div>
                         </div>

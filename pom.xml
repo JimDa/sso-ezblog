@@ -17,6 +17,8 @@
     <modules>
         <module>ezblog-base</module>
         <module>ezblog-auth</module>
+        <module>ezblog-user</module>
+        <module>ezblog-comm</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -83,6 +85,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+            <version>3.0.4.RELEASE</version>
         </dependency>
 
         <!--阿里云发短信-->

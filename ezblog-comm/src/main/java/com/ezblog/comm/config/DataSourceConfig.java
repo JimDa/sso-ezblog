@@ -1,4 +1,4 @@
-package com.ezblog.user.config;
+package com.ezblog.comm.config;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -18,14 +18,14 @@ import javax.sql.DataSource;
 
 @Configuration
 @MapperScan(
-        value = {"com.ezblog.user.mapper"},
+        value = {"com.ezblog.comm.mapper"},
         sqlSessionFactoryRef = "sqlSessionFactory",
         sqlSessionTemplateRef = "sqlSessionTemplate"
 )
 public class DataSourceConfig {
 
     @Bean(name = "datasource")
-    @ConfigurationProperties(prefix = "spring.datasource.user-service")
+    @ConfigurationProperties(prefix = "spring.datasource.comm-service")
     public DataSource dataSource() {
         return DataSourceBuilder.create().build();
     }
@@ -44,7 +44,7 @@ public class DataSourceConfig {
     ) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);
-        Resource[] resources = new PathMatchingResourcePatternResolver().getResources("classpath*:com/ezblog/user/mapper/*.xml");
+        Resource[] resources = new PathMatchingResourcePatternResolver().getResources("classpath*:com/ezblog/comm/mapper/*.xml");
         sqlSessionFactoryBean.setMapperLocations(resources);
         return sqlSessionFactoryBean.getObject();
     }
