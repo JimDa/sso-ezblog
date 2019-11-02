@@ -17,7 +17,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import javax.sql.DataSource;
 
 @Configuration
-//@ConditionalOnProperty(name = "spring.datasource.service-auth", matchIfMissing = false)
+//@ConditionalOnProperty(name = "spring.datasource.user-service", matchIfMissing = false)
 @MapperScan(
         value = {"com.ezblog.user.mapper"},
         sqlSessionFactoryRef = "sqlSessionFactory",
@@ -26,7 +26,7 @@ import javax.sql.DataSource;
 public class DataSourceConfig {
 
     @Bean(name = "datasource")
-    @ConfigurationProperties(prefix = "spring.datasource.auth-service")
+    @ConfigurationProperties(prefix = "spring.datasource.user-service")
     public DataSource dataSource() {
         return DataSourceBuilder.create().build();
     }

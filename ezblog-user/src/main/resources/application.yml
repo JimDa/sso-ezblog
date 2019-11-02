@@ -16,6 +16,7 @@ spring:
     database: 0
   datasource:
     user-service:
+#      driver-class-name: com.mysql.jdbc.Driver
       jdbc-url: jdbc:mysql://localhost:3306/auth?useUnicode=true&characterEncoding=UTF-8&useSSL=FALSE&serverTimezone=Asia/Shanghai&allowMultiQueries=true
       username: dpc
       password: dpc123

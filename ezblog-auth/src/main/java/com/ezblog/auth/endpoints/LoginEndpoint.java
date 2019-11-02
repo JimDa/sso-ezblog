@@ -9,4 +9,9 @@ public class LoginEndpoint {
     public String login() {
         return "login";
     }
+
+    @GetMapping("/")
+    public String index() {
+        return "index";
+    }
 }
