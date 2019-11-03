@@ -25,7 +25,8 @@ public class LogoutEndpoint {
             System.out.println(cookie.getValue());
         });
         OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getDetails();
-        final ResponseEntity<Boolean> responseEntity = revokeTokenClient.revoke(details.getTokenValue());
+        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+        ResponseEntity<Boolean> responseEntity = revokeTokenClient.revoke(details.getTokenValue(), userName);
         System.out.println(String.format("退出是否成功->%s", responseEntity.getBody()));
         return "redirect:http://localhost:8081/auth-service/login";
     }

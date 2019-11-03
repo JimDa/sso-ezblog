@@ -22,10 +22,10 @@ public class RedisConfig {
 
     @Bean
     @ConditionalOnMissingBean(name = "redisTemplate")
-    public RedisTemplate<Object, Object> redisTemplate(
+    public RedisTemplate<String, Object> redisTemplate(
             RedisConnectionFactory redisConnectionFactory)
             throws UnknownHostException {
-        RedisTemplate<Object, Object> template = new RedisTemplate<>();
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(redisConnectionFactory);
 
         // 设置value的序列化规则和 key的序列化规则
