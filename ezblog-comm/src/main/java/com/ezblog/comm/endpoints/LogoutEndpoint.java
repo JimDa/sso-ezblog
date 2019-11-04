@@ -1,7 +1,7 @@
-package com.ezblog.user.endpoints;
+package com.ezblog.comm.endpoints;
 
 
-import com.ezblog.user.feign.clients.RevokeTokenClient;
+import com.ezblog.comm.feign.clients.RevokeTokenClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
