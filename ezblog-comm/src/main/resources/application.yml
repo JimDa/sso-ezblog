@@ -15,7 +15,7 @@ spring:
     port: 6379
     database: 0
   datasource:
-    user-service:
+    comm-service:
       jdbc-url: jdbc:mysql://localhost:3306/comm?useUnicode=true&characterEncoding=UTF-8&useSSL=FALSE&serverTimezone=Asia/Shanghai&allowMultiQueries=true
       username: dpc
       password: dpc123
