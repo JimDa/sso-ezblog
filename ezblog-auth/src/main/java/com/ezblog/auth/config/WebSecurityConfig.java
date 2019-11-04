@@ -26,13 +26,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity webSecurity) {
-        webSecurity.ignoring().antMatchers("/assets/**", "/css/**", "/images/**");
+        webSecurity.ignoring().antMatchers(
+                "/fonts/**",
+                "/js/**",
+                "/lib/**/**",
+                "/css/**",
+                "/images/**");
     }
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.formLogin()
                 .loginPage("/login")
+                .defaultSuccessUrl("/index")
                 .and()
                 .authorizeRequests()
                 .antMatchers("/login", "/oauth/**").permitAll()

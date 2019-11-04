@@ -6,8 +6,6 @@ server:
 spring:
   thymeleaf:
     cache: false
-    servlet:
-      content-type: text/html
     mode: HTML
 
   redis:
