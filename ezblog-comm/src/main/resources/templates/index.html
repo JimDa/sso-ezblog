@@ -141,30 +141,31 @@
                 <!-- /tt-search -->
             </div>
             <div th:if="${#authentication != null}">
-                <div class="col-auto ml-auto">
-                    <div class="tt-user-info d-flex justify-content-center">
-                        <a class="tt-btn-icon" href="#">
-                            <i class="tt-icon">
-                                <svg>
-                                    <use xlink:href="#icon-notification"></use>
-                                </svg>
-                            </i>
-                        </a>
-                        <div class="tt-avatar-icon tt-size-md">
-                            <i class="tt-icon">
-                                <svg>
-                                    <use xlink:href="#icon-ava-a"></use>
-                                </svg>
-                            </i>
-                        </div>
-                        <div class="custom-select-01">
-                            <span th:text="${#authentication.name}"></span>
-                        </div>
+                <!--<div class="col-auto ml-auto">-->
+                <div class="tt-user-info d-flex justify-content-center">
+                    <a class="tt-btn-icon" href="#">
+                        <i class="tt-icon">
+                            <svg>
+                                <use xlink:href="#icon-notification"></use>
+                            </svg>
+                        </i>
+                    </a>
+                    <!--<div class="tt-avatar-icon tt-size-md">-->
+                    <!--<i class="tt-icon">-->
+                    <!--<svg>-->
+                    <!--<use xlink:href="#icon-ava-a"></use>-->
+                    <!--</svg>-->
+                    <!--</i>-->
+                    <!--</div>-->
+                    <!--<div class="custom-select-01">-->
+                    <span th:text="${#authentication.name}"></span>
+                    <!--</div>-->
+                    <div>
+                        <a class="btn btn-secondary" th:href="@{/logout}">登出</a>
                     </div>
                 </div>
-                <div>
-                    <a class="btn btn-secondary" th:href="@{/logout}">登出</a>
-                </div>
+                <!--</div>-->
+
             </div>
             <div th:if="${#authentication == null}">
                 <a class="btn btn-primary" th:href="@{/page-login.html}">Log in</a>
@@ -177,12 +178,12 @@
     <div class="container">
         <div class="tt-topic-list">
             <div class="tt-list-header">
-                <div class="tt-col-topic">Topic</div>
-                <div class="tt-col-category">Category</div>
-                <div class="tt-col-value hide-mobile">Likes</div>
-                <div class="tt-col-value hide-mobile">Replies</div>
-                <div class="tt-col-value hide-mobile">Views</div>
-                <div class="tt-col-value">Activity</div>
+                <div class="tt-col-topic">主题</div>
+                <div class="tt-col-category">类别</div>
+                <div class="tt-col-value hide-mobile">赞</div>
+                <div class="tt-col-value hide-mobile">回复</div>
+                <div class="tt-col-value hide-mobile">查看</div>
+                <div class="tt-col-value">活跃</div>
             </div>
             <div class="tt-topic-alert tt-alert-default" role="alert">
                 <a href="#" target="_blank">4 new posts</a> are added recently, click here to load them.
@@ -959,7 +960,7 @@
         </div>
     </div>
 </div>
-<script src="js/bundle.js"></script>
+<script th:src="@{/js/bundle.js}"></script>
 <svg class="hidden" height="0" width="0">
     <symbol aria-hidden="true" data-icon="facebook-f" data-prefix="fab" id="facebook-f-brands"
             viewBox="0 0 264 512" xmlns="http://www.w3.org/2000/svg">
