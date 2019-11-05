@@ -12,7 +12,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity webSecurity) {
-        webSecurity.ignoring().antMatchers("/bootstrap/**");
+        webSecurity.ignoring().antMatchers(
+                "/js/**",
+                "/external/perfect-scrollbar/**",
+                "/favicon/**",
+                "/css/**",
+                "/scss/**",
+                "/images/**");
     }
 
     @Override
@@ -20,6 +26,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 .logout()
                 .logoutSuccessUrl("http://localhost:8081/auth-service/login")
+                .and()
+                .authorizeRequests()
+                .antMatchers("/index/list")
+                .permitAll()
                 .and()
                 .authorizeRequests()
                 .anyRequest().authenticated()

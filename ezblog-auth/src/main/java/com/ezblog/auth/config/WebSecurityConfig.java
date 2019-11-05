@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("http://localhost:8083/comm-service/index")
+                .defaultSuccessUrl("http://localhost:8083/comm-service/index/list")
                 .and()
                 .authorizeRequests()
                 .antMatchers("/login", "/oauth/**").permitAll()
