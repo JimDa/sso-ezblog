@@ -7,4 +7,6 @@ public interface IUserAccountService extends UserDetailsService {
 //    User loadUserByPhoneNum(String phoneNum);
 
     User loadUserByLoginType(String loginType, String principal);
+
+    User loadUserById(String userId);
 }

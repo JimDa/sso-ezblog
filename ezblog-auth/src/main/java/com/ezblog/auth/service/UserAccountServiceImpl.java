@@ -34,4 +34,9 @@ public class UserAccountServiceImpl implements IUserAccountService {
     public User loadUserByLoginType(String loginType, String principal) {
         return userAccountMapper.selectByLoginType(loginType.equals("verify_code") ? "temp.phone_num" : "temp.".concat(loginType), principal);
     }
+
+    @Override
+    public User loadUserById(String userId) {
+        return userAccountMapper.selectById(userId);
+    }
 }

@@ -9,4 +9,6 @@ public interface UserAccountMapper {
     User selectByUsername(@Param("username") String username);
 
     User selectByLoginType(@Param("loginType") String loginType, @Param("principal") String principal);
+
+    User selectById(@Param("userId") String userId);
 }

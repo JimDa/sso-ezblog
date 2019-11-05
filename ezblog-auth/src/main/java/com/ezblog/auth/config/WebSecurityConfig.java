@@ -27,10 +27,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity webSecurity) {
         webSecurity.ignoring().antMatchers(
-                "/fonts/**",
                 "/js/**",
-                "/lib/**/**",
+                "/external/perfect-scrollbar/**",
+                "/favicon/**",
                 "/css/**",
+                "/scss/**",
                 "/images/**");
     }
 
@@ -38,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/index")
+                .defaultSuccessUrl("http://localhost:8083/comm-service/index")
                 .and()
                 .authorizeRequests()
                 .antMatchers("/login", "/oauth/**").permitAll()

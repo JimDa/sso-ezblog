@@ -33,4 +33,7 @@
         left join oauth_user_role our on temp.role_id = our.id
          where ${loginType} = #{principal,jdbcType=VARCHAR}
     </select>
+    <select id="selectById" resultType="domain.User">
+        select * from oauth_user_account where id = #{userId,jdbcType=INTEGER}
+    </select>
 </mapper>

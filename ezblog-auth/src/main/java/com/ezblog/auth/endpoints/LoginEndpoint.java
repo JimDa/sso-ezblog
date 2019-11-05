@@ -7,11 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class LoginEndpoint {
     @GetMapping("/login")
     public String login() {
-        return "sign-in";
-    }
-
-    @GetMapping("/index")
-    public String index() {
-        return "index";
+        return "page-login";
     }
 }
