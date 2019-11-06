@@ -15,4 +15,6 @@ public interface UserService {
     User queryUserByPhoneNum(String principal);
 
     User addUserByPhoneNum(User user);
+
+    User queryUserById(Integer userId);
 }

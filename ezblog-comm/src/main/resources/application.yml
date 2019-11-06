@@ -10,6 +10,9 @@ security:
         key-uri: http://localhost:8081/auth-service/oauth/token_key
 
 spring:
+  thymeleaf:
+    cache: false
+    mode: HTML
   redis:
     host: localhost
     port: 6379

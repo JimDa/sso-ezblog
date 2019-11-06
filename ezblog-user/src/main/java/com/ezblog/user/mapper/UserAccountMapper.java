@@ -17,4 +17,6 @@ public interface UserAccountMapper {
     void relateRole(@Param("userId") Integer id, @Param("roleId") Integer i);
 
     User selectByPhoneNum(@Param("phoneNum") String principal);
+
+    User selectById(@Param("userId") Integer userId);
 }

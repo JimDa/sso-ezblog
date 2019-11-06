@@ -52,6 +52,9 @@
         left join oauth_user_role_rels ourr on oua.id = ourr.user_id) temp
         left join oauth_user_role our on temp.role_id = our.id
     </select>
+    <select id="selectById" resultType="domain.User">
+        select * from oauth_user_account where id = #{userId,jdbcType=INTEGER}
+    </select>
 
     <insert id="relateRole">
         insert into oauth_user_role_rels (user_id,role_id)

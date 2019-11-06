@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("http://localhost:8083/comm-service/index/list")
                 .and()
                 .authorizeRequests()
-                .antMatchers("/login", "/oauth/**").permitAll()
+                .antMatchers("/login", "/register", "/oauth/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and().csrf().disable().cors();

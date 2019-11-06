@@ -57,4 +57,9 @@ public class UserServiceImpl implements UserService {
         userAccountMapper.relateRole(user.getId(), 2);
         return user;
     }
+
+    @Override
+    public User queryUserById(Integer userId) {
+        return userAccountMapper.selectById(userId);
+    }
 }
