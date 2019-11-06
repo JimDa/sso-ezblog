@@ -3,6 +3,7 @@ package com.ezblog.auth.config;
 import com.ezblog.auth.handler.CustomAccessDeniedHandler;
 import com.ezblog.auth.handler.CustomAuthenticationFailureHandler;
 import com.ezblog.auth.handler.CustomLogoutSuccessHandler;
+import com.ezblog.auth.provider.CustomIpAuthenticationProvider;
 import com.ezblog.auth.service.IUserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,11 +25,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private IUserAccountService userAccountService;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private CustomIpAuthenticationProvider customIpAuthenticationProvider;
 
     @Override
     protected void configure(AuthenticationManagerBuilder builder) throws Exception {
-        builder.userDetailsService(userAccountService)
-                .passwordEncoder(bCryptPasswordEncoder);
+        builder.authenticationProvider(customIpAuthenticationProvider)
+                .userDetailsService(userAccountService)
+                .passwordEncoder(bCryptPasswordEncoder)
+        ;
     }
 
     @Override
