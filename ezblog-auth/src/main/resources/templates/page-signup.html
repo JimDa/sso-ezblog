@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>Forum - Responsive HTML5 Template</title>
@@ -36,31 +36,31 @@
                 <a class="tt-block-title" href="index.html">
                     <img alt="" src="images/logo.png">
                     <div class="tt-title">
-                        Welcome to Forum19
+                        欢迎来到ezblog
                     </div>
                     <div class="tt-description">
-                        Join the forum to unlock true power of community.
+                        登录ezblog享受自由博客每一天！
                     </div>
                 </a>
                 <form class="form-default">
                     <div class="form-group">
-                        <label for="loginUserName">Username</label>
-                        <input class="form-control" id="loginUserName" name="name" placeholder="azyrusmax" type="text">
+                        <label for="loginUserName">账户名</label>
+                        <input class="form-control" id="loginUserName" name="username" placeholder="请填写账户名" type="text">
                     </div>
                     <div class="form-group">
-                        <label for="loginUserEmail">Email</label>
-                        <input class="form-control" id="loginUserEmail" name="name" placeholder="Sample@sample.com"
+                        <label for="loginUserEmail">邮箱</label>
+                        <input class="form-control" id="loginUserEmail" name="email" placeholder="请填写邮箱"
                                type="text">
                     </div>
                     <div class="form-group">
-                        <label for="loginUserPassword">Password</label>
-                        <input class="form-control" id="loginUserPassword" name="name" placeholder="************"
+                        <label for="loginUserPassword">密码</label>
+                        <input class="form-control" id="loginUserPassword" name="password" placeholder="*********"
                                type="password">
                     </div>
                     <div class="form-group">
-                        <a class="btn btn-secondary btn-block" href="#">Create my account</a>
+                        <a class="btn btn-secondary btn-block" href="#">创建账户</a>
                     </div>
-                    <p>Or signup with social network</p>
+                    <p>或者通过以下方式登录</p>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
@@ -87,12 +87,7 @@
                             </div>
                         </div>
                     </div>
-                    <p>Already have an account? <a class="tt-underline" href="#">Login here</a></p>
-                    <div class="tt-notes">
-                        By signing up, signing in or continuing, I agree to
-                        Forum19’s <a class="tt-underline" href="#">Terms of Use</a> and <a class="tt-underline"
-                                                                                           href="#">Privacy Policy.</a>
-                    </div>
+                    <p>已经拥有账户了？<a class="tt-underline" th:href="@{/login}">点击登录</a></p>
                 </form>
             </div>
         </div>

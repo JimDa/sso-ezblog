@@ -67,7 +67,7 @@
                     <!-- /toggle -->
                     <form class="search-wrapper">
                         <div class="search-form">
-                            <input class="tt-search__input" placeholder="Search" type="text">
+                            <input class="tt-search__input" placeholder="搜索" type="text">
                             <button class="tt-search__btn" type="submit">
                                 <svg class="tt-icon">
                                     <use xlink:href="#icon-search"></use>
@@ -140,8 +140,38 @@
                 </div>
                 <!-- /tt-search -->
             </div>
-            <div th:if="${#authentication != null}">
-                <!--<div class="col-auto ml-auto">-->
+            <!--            <div th:if="${#authentication != null}">-->
+            <!--                &lt;!&ndash;<div class="col-auto ml-auto">&ndash;&gt;-->
+            <!--                <div class="tt-user-info d-flex justify-content-center">-->
+            <!--                    <a class="tt-btn-icon" href="#">-->
+            <!--                        <i class="tt-icon">-->
+            <!--                            <svg>-->
+            <!--                                <use xlink:href="#icon-notification"></use>-->
+            <!--                            </svg>-->
+            <!--                        </i>-->
+            <!--                    </a>-->
+            <!--                    &lt;!&ndash;<div class="tt-avatar-icon tt-size-md">&ndash;&gt;-->
+            <!--                    &lt;!&ndash;<i class="tt-icon">&ndash;&gt;-->
+            <!--                    &lt;!&ndash;<svg>&ndash;&gt;-->
+            <!--                    &lt;!&ndash;<use xlink:href="#icon-ava-a"></use>&ndash;&gt;-->
+            <!--                    &lt;!&ndash;</svg>&ndash;&gt;-->
+            <!--                    &lt;!&ndash;</i>&ndash;&gt;-->
+            <!--                    &lt;!&ndash;</div>&ndash;&gt;-->
+            <!--                    &lt;!&ndash;<div class="custom-select-01">&ndash;&gt;-->
+            <!--                    <span th:text="${#authentication.name}"></span>-->
+            <!--                    &lt;!&ndash;</div>&ndash;&gt;-->
+            <!--                    <div>-->
+            <!--                        <a class="btn btn-secondary" th:href="@{/logout}">登出</a>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                &lt;!&ndash;</div>&ndash;&gt;-->
+
+            <!--            </div>-->
+            <!--            <div th:if="${#authentication == null}">-->
+            <!--                <a class="btn btn-primary" th:href="@{/page-login.html}">Log in</a>-->
+            <!--                <a class="btn btn-secondary" th:href="@{/page-signup.html}">Sign up</a>-->
+            <!--            </div>-->
+            <div class="col-auto ml-auto">
                 <div class="tt-user-info d-flex justify-content-center">
                     <a class="tt-btn-icon" href="#">
                         <i class="tt-icon">
@@ -150,26 +180,25 @@
                             </svg>
                         </i>
                     </a>
-                    <!--<div class="tt-avatar-icon tt-size-md">-->
-                    <!--<i class="tt-icon">-->
-                    <!--<svg>-->
-                    <!--<use xlink:href="#icon-ava-a"></use>-->
-                    <!--</svg>-->
-                    <!--</i>-->
-                    <!--</div>-->
-                    <!--<div class="custom-select-01">-->
-                    <span th:text="${#authentication.name}"></span>
-                    <!--</div>-->
-                    <div>
-                        <a class="btn btn-secondary" th:href="@{/logout}">登出</a>
+                    <div class="tt-avatar-icon tt-size-md">
+                        <i class="tt-icon">
+                            <svg>
+                                <use xlink:href="#icon-ava-a"></use>
+                            </svg>
+                        </i>
+                    </div>
+                    <div class="custom-select-01" th:if="${#authentication.isAuthenticated()}">
+                        <select>
+                            <option th:text="${#authentication.name}"></option>
+                            <option th:action="@{/custom/logout}">登出</option>
+                        </select>
+                    </div>
+                    <div class="custom-select-01" th:if="${!#authentication.isAuthenticated()}">
+                        <select>
+                            <option th:action="@{http://localhost:8081/auth-service/login}">登出</option>
+                        </select>
                     </div>
                 </div>
-                <!--</div>-->
-
-            </div>
-            <div th:if="${#authentication == null}">
-                <a class="btn btn-primary" th:href="@{/page-login.html}">Log in</a>
-                <a class="btn btn-secondary" th:href="@{/page-signup.html}">Sign up</a>
             </div>
         </div>
     </div>

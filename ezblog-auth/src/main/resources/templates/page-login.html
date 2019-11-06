@@ -34,7 +34,7 @@
         <div class="tt-loginpages-wrapper">
             <div class="tt-loginpages">
                 <a class="tt-block-title" th:href="@{http://localhost:8083/comm-service/index/list}">
-                    <img alt="" th:src="@{/images/logo.png}">
+                    <img alt="" src="images/logo.png">
                     <div class="tt-title">
                         欢迎来到ezblog
                     </div>
@@ -100,7 +100,7 @@
                             </div>
                         </div>
                     </div>
-                    <p>还没有账号吗？<a class="tt-underline" href="#">点击注册</a></p>
+                    <p>还没有账号吗？<a class="tt-underline" th:href="@{/register}">点击注册</a></p>
                 </form>
             </div>
         </div>
