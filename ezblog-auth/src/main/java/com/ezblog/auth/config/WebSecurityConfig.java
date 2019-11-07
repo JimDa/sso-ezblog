@@ -51,17 +51,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.formLogin()
+        httpSecurity
+//                .sessionManagement()
+//                .maximumSessions(1)
+//                .invalidSessionUrl("/session-invalid.html")
+//                .expiredUrl("/session-expired.html")
+                .authorizeRequests()
+                .antMatchers("/login", "/register", "/oauth/**").permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .formLogin()
                 .loginPage("/page-login.html")
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("http://localhost:8083/comm-service/index/list")
                 .successHandler(authenticationSuccessHandler())
                 .failureHandler(authenticationFailureHandler())
-                .and()
-                .authorizeRequests()
-                .antMatchers("/login", "/register", "/oauth/**").permitAll()
-                .anyRequest()
-                .authenticated()
                 .and()
                 .logout()
                 .logoutUrl("/logout")
@@ -74,7 +79,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedHandler(accessDeniedHandler())
                 .and()
                 .rememberMe()
-                .and().csrf().disable().cors();
+                .and()
+                .csrf().disable().cors();
     }
 
     @Bean
