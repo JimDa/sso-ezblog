@@ -16,7 +16,6 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 import javax.sql.DataSource;
@@ -43,13 +42,8 @@ public class AuthConfig extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer authorizationServerEndpointsConfigurer) throws Exception {
-        authorizationServerEndpointsConfigurer.accessTokenConverter(jwtAccessTokenConverter());
         authorizationServerEndpointsConfigurer.tokenStore(tokenStore(redisConnectionFactory));
-    }
-
-    @Bean
-    public TokenStore jwtTokenStore() {
-        return new JwtTokenStore(jwtAccessTokenConverter());
+        authorizationServerEndpointsConfigurer.tokenEnhancer(tokenEnhancerChain());
     }
 
     @Bean

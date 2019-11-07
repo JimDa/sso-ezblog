@@ -1,6 +1,7 @@
 package com.ezblog.auth.endpoints;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
@@ -11,13 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.util.Map;
 
+/**
+ * @author dpc
+ */
 @RestController
 @RequestMapping(value = "/oauth/token")
 public class TokenRevokeEndpoint {
-    @Resource(name = "defaultTokenServices")
+    @Autowired
+    @Qualifier(value = "defaultTokenServices")
     private ConsumerTokenServices tokenServices;
     @Autowired
     private StringRedisTemplate stringRedisTemplate;

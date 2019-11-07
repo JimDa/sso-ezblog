@@ -16,6 +16,8 @@ import java.io.IOException;
 public class CustomLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler implements LogoutSuccessHandler {
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+        String refererUrl = request.getHeader("Referer");
+        System.out.println(String.format("Logout from %s", refererUrl));
         super.onLogoutSuccess(request, response, authentication);
     }
 }

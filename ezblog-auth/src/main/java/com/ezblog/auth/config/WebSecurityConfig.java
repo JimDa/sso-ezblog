@@ -1,5 +1,6 @@
 package com.ezblog.auth.config;
 
+import com.ezblog.auth.handler.AuthenticationSuccessRedirectHandler;
 import com.ezblog.auth.handler.CustomAccessDeniedHandler;
 import com.ezblog.auth.handler.CustomAuthenticationFailureHandler;
 import com.ezblog.auth.handler.CustomLogoutSuccessHandler;
@@ -16,6 +17,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 @Configuration
@@ -50,8 +52,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.formLogin()
-                .loginPage("/login")
+                .loginPage("/page-login.html")
+                .loginProcessingUrl("/login")
                 .defaultSuccessUrl("http://localhost:8083/comm-service/index/list")
+                .successHandler(authenticationSuccessHandler())
                 .failureHandler(authenticationFailureHandler())
                 .and()
                 .authorizeRequests()
@@ -61,7 +65,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/logout")
+                .logoutSuccessUrl("/login")
                 .deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true)
                 .logoutSuccessHandler(logoutSuccessHandler())
                 .and()
                 .exceptionHandling()
@@ -84,6 +90,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public LogoutSuccessHandler logoutSuccessHandler() {
         return new CustomLogoutSuccessHandler();
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler authenticationSuccessHandler() {
+        return new AuthenticationSuccessRedirectHandler();
     }
 
 }
